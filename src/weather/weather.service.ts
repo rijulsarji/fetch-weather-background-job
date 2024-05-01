@@ -1,6 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
+import { Serialize } from 'src/serialiser/serialiser';
 
 @Injectable()
 export class WeatherService {

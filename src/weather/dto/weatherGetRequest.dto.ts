@@ -1,20 +1,20 @@
 import { Expose, Transform, Type } from 'class-transformer';
 
-export class LocationDTO {
-  @Expose()
-  localtime: string;
-}
+// export class LocationDTO {
+//   @Expose()
+//   localtime: string;
+// }
 
-export class ConditionDTO {
-  @Expose()
-  text: string;
-}
+// export class ConditionDTO {
+//   @Expose()
+//   text: string;
+// }
 
-export class CurrentDTO {
-  @Type(() => ConditionDTO)
-  @Expose()
-  condition: ConditionDTO;
-}
+// export class CurrentDTO {
+//   @Type(() => ConditionDTO)
+//   @Expose()
+//   condition: ConditionDTO;
+// }
 
 export class DayDTO {
   @Expose()
@@ -37,15 +37,18 @@ export class ForecastDTO {
 }
 
 export class WeatherGetRequestDTO {
-  @Type(() => LocationDTO)
+  // @Type(() => LocationDTO)
   @Expose()
-  location: LocationDTO;
+  @Transform(({ value }) => value.localtime)
+  location: string;
 
-  @Type(() => CurrentDTO)
   @Expose()
-  current: CurrentDTO;
-
-  @Type(() => ForecastDTO)
-  @Expose()
-  forecast: ForecastDTO;
+  @Transform(({ value }) => {
+    return {
+      max: value.forecastday[0].day.maxtemp_c,
+      min: value.forecastday[0].day.mintemp_c,
+      condition: value.forecastday[0].day.condition.text,
+    };
+  })
+  forecast: string;
 }
