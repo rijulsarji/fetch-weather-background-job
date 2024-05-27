@@ -1,7 +1,4 @@
 {
-  "trigger.dev": {
-    "endpointId": "my-nest-app"
-  },
   "name": "trigger-dev",
   "version": "0.0.1",
   "description": "",
@@ -34,6 +31,7 @@
     "axios": "^1.6.8",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "node-fetch": "^3.3.2",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },
@@ -76,5 +74,8 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "trigger.dev": {
+    "endpointId": "trigger-dev"
   }
 }
